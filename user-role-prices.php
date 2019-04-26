@@ -117,10 +117,10 @@ class UserRolePrices {
     public function woo_notices() {
 
         //check and print if any error notices are present
-        if(!empty($_SESSION['woo_error_notices'])) print  $_SESSION['woo_error_notices'];
+        if ( !empty ( $_SESSION['woo_error_notices'] ) ) print  $_SESSION['woo_error_notices'];
 
         //unset the session variable
-        unset ($_SESSION['woo_error_notices']);
+        unset ( $_SESSION['woo_error_notices'] );
     }
 
      /**
@@ -202,6 +202,7 @@ class UserRolePrices {
     /**
      * Save the price data for differnt user roles from variation tab
      *
+     * @param $variation_id, $i
      */
     public function woo_save_custom_field_variations( $variation_id, $i ) {
 

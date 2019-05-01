@@ -226,7 +226,7 @@ class UserRolePrices {
      * @param $price_html, $product
      */
     public function woo_change_product_price_html( $price_html, $product ) {
-       
+        print_r( get_woocommerce_currency_symbol( $currency ) );
         $price = $this->woo_get_role_based_product( $product->id );
 
         if ( $price ) {
@@ -263,21 +263,19 @@ class UserRolePrices {
      */
     public function add_custom_price( $cart_object ) {
 
-        //check if we are on cart page or checkout page or anyother page
-        if ( is_cart() || is_checkout() ) {
-            
-            foreach ( $cart_object->cart_contents as $key => $value ) {
+        
+        foreach ( $cart_object->cart_contents as $key => $value ) {
 
-                //get the new price based on user role
-                $newprice = $this->woo_get_role_based_product( $value['product_id'] );
-               
-                //check if the new price is null or not
-                if ( $newprice ) {
-                    //set the price as new price
-                    $value['data']->set_price( $newprice );
-                }
+            //get the new price based on user role
+            $newprice = $this->woo_get_role_based_product( $value['product_id'] );
+           
+            //check if the new price is null or not
+            if ( $newprice ) {
+                //set the price as new price
+                $value['data']->set_price( $newprice );
             }
         }
+       
     }
 }
 
